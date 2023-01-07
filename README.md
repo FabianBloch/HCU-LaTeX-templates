@@ -11,7 +11,7 @@
 
 The templates are **in preparation** ... please *be patient*!
 
-Die Vorlagen sind **in Vorbereitung** ... bitte *habe Geduld*!
+Die Vorlage in deutsch ist fertig. :grin:
 
 
 
