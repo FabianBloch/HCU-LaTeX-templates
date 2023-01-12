@@ -6,7 +6,7 @@ Hier werden die deutschen Versionen zu finden sein:
 
 ## Bericht
 
-*HCU_Vorlage_Einzelarbeit_2023* (Stand: 07.01.2023)
+*HCU_Vorlage_Einzelarbeit_2023* (Stand: 12.01.2023)
 
 Die vollständige PDF kann hier direkt angesehen werden.
 
