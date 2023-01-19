@@ -1,0 +1,103 @@
+% Hier sind ein paar Vorlagen aus der text.tex:
+
+% Überlange Überschrift
+\section[Überschrift]{\texorpdfstring{Überschrift tex}{Überschrift pdf}}
+
+
+% Textfarbe
+\textcolor{HCU}{}
+\textcolor{red1}{}
+
+
+% Anführungszeichen
+\glqq Text\grqq{}
+
+
+% 2 Quellen
+(\citeauthor{}, \citeyearNP{}, S. ; \citeauthor{}, \citeyearNP{}, S. )
+
+
+% Abbildung mit Quelle
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{Daten/Datei}
+	\caption{Überschrift}
+	\caption*{Quelle: \citeA{}}
+	\label{fig:}
+\end{figure}
+
+
+% Bild mit trim
+\begin{figure}[H]
+	\centering
+	% trim = left lower right upper
+	\includegraphics[trim={95mm 17mm 110mm 15mm}, clip, width=1\textwidth]{Daten/DGM.png}
+	\caption{Überschrift}
+	\caption*{Quelle: \citeA{}}
+	\label{fig:}
+\end{figure}
+
+
+% 2 Abbildungen mit Quelle
+\begin{figure}[H]
+	\begin{subfigure}[c]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{Daten/}
+		\subcaption{}
+		\label{fig:}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[c]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{Daten/}
+		\subcaption{}
+		\label{fig:}
+	\end{subfigure}
+	\caption{}
+	\caption*{Quelle: \citeA[]{}}
+	\label{fig:}
+\end{figure}
+
+
+% Formel mit Nummerierung
+\begin{equation}
+	\numberwithin{equation}{section}
+	Formel \label{eq:Label} \\
+\end{equation}
+
+
+% Python-Input aus Datei
+\lstinputlisting[language=Python, style=Python, firstline=, lastline=, caption=Überschift, label={lst:Label}]{Daten/Datei.py}
+
+
+% Aufzählung
+\begin{itemize}	
+	\setlength{\itemsep}{-2pt}
+	\item 
+	\item 
+	\item 
+\end{itemize}
+
+
+% minipage
+\begin{minipage}[H]{0.48\textwidth}
+	
+\end{minipage}
+\hfill
+\begin{minipage}[H]{0.48\textwidth}
+	
+\end{minipage}
+
+
+% Spalten
+\begin{multicols}{2}
+	
+\end{multicols}
+
+
+% eine PDF-Seite hinzufügen
+\begin{center} %trim= left bottom right top
+	\includegraphics[trim = 0mm 0mm 0mm 0mm,clip, page = 1, width=1\textwidth]{Daten/Datei.pdf}\\
+\end{center}
+
+
+% PDF als Raster hinzufügen
+\includepdf[pages={},nup= 2x5,delta=3mm 3mm,pagecommand={},width=0.5\textwidth]{Daten/Datei}

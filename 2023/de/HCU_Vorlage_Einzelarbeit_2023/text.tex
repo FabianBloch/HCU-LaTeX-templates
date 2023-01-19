@@ -1,0 +1,685 @@
+\section{Allgemein} \label{sec:ersteSec}
+
+Willkommen zu meiner \LaTeX-Vorlage für Geodäsie-Studierende der HCU!
+
+Hier gebe ich einen Überblick über den Aufbau und die Formatierungen in einem \LaTeX-Dokument. Das Endprodukt eines oder mehrerer zusammenhängender \LaTeX-Dateien ist immer eine PDF-Datei, die sogar Lesezeichen enthalten.\\
+
+Für den \LaTeX-Code oder Dateien- bzw. Ordner-Namen in der PDF nutze ich ein Code-Block, welcher nicht im Listingsverzeichnis erscheint:
+
+\verb|Hier kann dann \LaTeX-Code stehen.|
+
+
+\subsection{Aufbau eines \LaTeX-Dokuments} \label{sec:aufbau}
+
+Diese Vorlage ist von den \LaTeX-Dateien wie folgt aufgebaut:
+
+\begin{itemize}
+    \item Hauptdokument (\verb|main.tex| oder \verb|LaTeX_Vorlage_2023.tex|)\\
+    Je nachdem welches Programm man benutzt wird die PDF nach dieser Datei benannt!
+    \item Titelseite (\verb|titelseite.tex|)\\
+    Hier wird die Titelseite gestaltet, Da hier hauptsächlich eigene Befehle verwendet werden, muss hier kaum was selbst geändert werden.
+    \item Text (\verb|text.tex|)\\
+    Hier wird der ganze Inhalt rein geschrieben. Es ist auch empfehlenswert, dies in einer Datei und nicht pro Kapitel eine Datei zu machen, da die meiste \LaTeX-Software den Inhalt separiert anzeigt (quasi das Inhaltsverzeichnis). So kann man schneller zwischen den Überschriften hin und her springen.
+    \item Quellen (\verb|Quellen.bib|)\\
+    BibTeX-Datei, die die Quellen in einer eigenen Art auflistet. Auf diese greift man beim Zitieren und beim Literaturverzeichnis auf.
+    \item Anhang (\verb|anhang.tex|)\\
+    Hier können Dateien oder sonstiges Material angehängt werden.
+\end{itemize}
+
+Außerdem benötigt man einen \verb|Daten|-Ordner, in dem alle PDFs, Bilder, etc. gespeichert werden, die im Laufe der Arbeit eingebunden werden.
+
+
+\subsubsection{Hauptdokument}
+
+Das Hauptdokument fängt immer mit einer Definition einer Klasse an. Für Berichte ist \verb|article| eine passende Wahl:
+
+\begin{verbatim}
+    % \documentclass[12pt,a4paper]{article}
+    
+    % Dies ist ein Kommentar in LaTeX
+    % Am Anfang gehört kein %-Zeichen !! 
+    % (Hier braucht LaTeX es aber zum kompilieren)
+\end{verbatim}
+
+Das meiste habe ich in dem Dokument selbst auch kommentiert. Danach wurde global eine Enstellung zum Einrücken von Absätzen vorgenommen. Anschließend kommen zahlreiche Pakete, die für viele Dinge nützlich sind.
+
+\begin{verbatim}
+    \usepackage[Paketoptionen]{Paketname}
+\end{verbatim}
+
+Im Internet findet man immer zahlreiche Tipps für jedes Paket (Tipp: Am besten in englisch suchen!). Am Ende der eingebundenen und definierten Pakete sind die Kopf- und Fußzeile definiert.
+
+\paragraph{Schriftart}
+
+\LaTeX{} benutzt standardmäßig die Schriftart \href{https://de.wikipedia.org/wiki/Computer_Modern}{Computer Modern}, die eine Serifenschrift ist. In wissenschaftlichen Arbeiten findet man dagegen serifenlose Schriftarten. Aus diesem Grund ist es empfehlenswert die Schriftart umzustellen. Dafür mfindet man auf \url{https://tug.org/FontCatalogue/} zahlreiche Schriftarten und wie sie eingebunden werden. Die Schriftarten \href{https://tug.org/FontCatalogue/arimo/}{Arimo} und \href{https://tug.org/FontCatalogue/arev/}{Arev} sind zu empfehlen.\\
+
+Für Umlaute, wie sie im Deutschen oft verwendet werden, benötigt man unbedingt das \verb|\usepackage[T1]{fontenc}|, so dass es in der PDF als auch beim Kopieren aus dieser richtig dargestellt wird.
+
+\begin{verbatim}
+    % Schriftart einstellen
+    % mehr auf https://tug.org/FontCatalogue/
+    \usepackage[sfdefault]{arimo}
+    \usepackage[T1]{fontenc}
+\end{verbatim}
+
+Hiernach beginnen die eigenen Befehle, wo man seine eigenen Daten einträgt. Um ein paar zu zeigen:
+
+\begin{verbatim}
+    % Hier die Angaben eintragen:
+    \newcommand{\Verfasser}{Vor- Nachname}
+    \newcommand{\Mail}{vorname.nachname}
+    \newcommand{\Matrikel}{xxxxxxx} % Matrikelnummer eintragen
+    \newcommand{\Modul}{Modul lang}
+\end{verbatim}
+
+Dabei ist ein eigener Befehl wie folgt definiert: 
+
+\begin{verbatim}
+    \newcommand{\eigener}{eigener Befehl}
+    % somit wird
+    Dies ist ein \eigener. % zu:
+\end{verbatim}
+
+Dies ist ein \eigener.
+
+Mehr dazu findet man auf \url{https://de.overleaf.com/learn/latex/Commands}.\\
+
+Nun kann das eigentliche Dokument mit folgendem Befehl gestartet werden, wobei, dazwischen noch weitere Befehle folgen:
+
+\begin{verbatim}
+    \begin{document}
+    
+    \end{document}
+\end{verbatim}
+
+Hier kann man schon erkennen, dass Befehle immer beginnen und enden müssen. Jeder Befehl kann eigene Optionen haben. Im \verb|document|-Befehl wird nun der Aufbau des Dokuments mit den im Kapitel \ref{sec:aufbau} beschriebenen Dateien definiert und aufgebaut:
+
+\begin{verbatim}
+    \include{titelseite}
+
+    \pagenumbering{Roman}
+    \tableofcontents
+    
+    \newpage
+    \pagenumbering{arabic}
+    \spacing{1.5}
+    \include{text}
+    % ... siehe Datei ...
+    \include{anhang}
+\end{verbatim}
+
+Hier werden die Titelseite, das Inhaltsverzeichnis sowie die weiteren Dokumente eingebunden. Wenn man sie auskommentiert (\verb|%|) können diese auch aus dem Endprodukt \glqq gelöscht\grqq{} werden.
+
+
+\paragraph{Verzeichnisse}
+
+Die Verzeichnisse sind eigentlich einmal erstellt und immer wieder so zu verwenden. Als erstes bindet man die Quellen über die \verb|Quellen.bib| ein, hier definiert man auch den Zitierstil (\verb|apacite| für APA-Style):
+
+\begin{verbatim}
+    % Literaturverz.
+    \nocite{*}
+    \bibliographystyle{apacite}
+    \renewcommand{\refname}{Literaturverzeichnis}
+    \bibliography{Quellen} % bbl, blg Dateien
+\end{verbatim}
+
+Anschließend das Abbildungsverzeichnis
+
+\begin{verbatim}
+    % Abbildungsverz.
+    \listoffigures
+    \addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\end{verbatim}
+
+und das Tabellenverzeichnis, wobei man hier auch einen Kommentar ein- oder ausblenden kann.
+
+\begin{verbatim}
+    % Tabellenverz.
+    \listoftables
+    \addcontentsline{toc}{section}{Tabellenverzeichnis}
+    % Bei Bedarf den Kommentar einblenden:
+    % \vspace{0.2cm}
+    % \noindent
+    % ... (s. Datei)
+\end{verbatim}
+
+Zum Schluss das Verzeichnis der Codes:
+
+\begin{verbatim}
+    % Listingverz.
+    \lstlistoflistings
+    \addcontentsline{toc}{section}{Listings}
+\end{verbatim}
+
+
+\subsubsection{Titelseite}
+
+In der \verb|titelseite.tex| ist/wird die Titelseite gestaltet. Da hier aber größtenteils eigene Befehle als Platzhalter eingebaut wurden, braucht hier kaum etwas geändert werden. Diese Vorlage kann auch als Vorlage einer Gruppenarbeit dienen. Dafür kann man diese dann anpassen (evtl. wird auch eine Vorlage für Gruppenarbeiten erstellt).\\
+
+Allerdings sollte man folgende Befehle für eine Titelseite beachten:
+
+\begin{verbatim}
+    \begin{titlepage}
+        \thispagestyle{empty}
+        \pdfbookmark[1]{Titelseite}{Titelseite}
+        % ...
+    \end{titlepage}
+\end{verbatim}
+
+So definiert man die Titelseite mit einem Befehl und löscht den Stil mit der Kopf- und Fußzeile auf dieser Seite. Zusätzlich kann man hier auch ein PDF-Lesezeichen für die Titelseite setzen, so dass die lesende Person diese später auch direkt anklicken kann.
+
+\textcolor{red1}{Wenn man nur die Titelseite definiert macht \LaTeX{} eine eigene Titelseite!}
+
+
+\subsubsection{Text}
+
+Der Text, also der Inhalt des Berichts, wird in die Datei \verb|text.tex| geschrieben. Wie man es macht findet man in Kapitel \ref{sec:Bsp}. Ansonsten kann man auch das hiesige Internet fragen. Ein paar kleine Vorlagen sind auch in der zusätzlichen Datei \verb|Makros.tex| zu finden, so dass es einheitlich bleibt.
+
+
+\subsubsection{Quellen}
+
+Die Quellen werden gemeinsam in eine \verb|Quellen.bib|-Datei abgespeichert. Dies ist eine BibTeX-Datei, in der man auch \LaTeX{} schreiben kann. Allerdings gibt es dabei auch ein paar Sachen zu beachten.
+
+\begin{verbatim}
+    @book{label_bsp_2023,
+        author = "Nachname1, Vorname1 AND Nachname2, Vorname2",
+        title = {{Beispiel-Titel}},
+        publisher = "Beispiel Verlag",
+        year = 2023
+    }
+\end{verbatim}
+
+Dies ist ein Beispiel für ein Buch. Es gibt auch andere Referenzarten, die unterschiedliche notwendige und optionale Attribute zur Verfügung haben.\\
+
+Es gibt auch hierfür Hilfsprogramme, wie Citavi oder \url{https://zbib.org}, dessen Ergebnisse aber \textcolor{red1}{\underline{unbedingt}} angepasst werden müssen.
+
+Wie man am Ende mit den hier eingebundenen und definierten Paketen zitieren kann, wird in Kapitel \ref{sec:Zitate} erklärt.
+
+
+\subsubsection{Anhang}
+
+Der Anhang (\verb|anhang.tex|) dient dazu, dass man der Arbeit Dateien oder Materialien anhängt. Zum Beispiel Aufgabenstellung, Python-Dateien (und Ergebnisse), sowie andere Dinge. Man kann jedem Anhang eine \verb|\section{}| geben und auch \verb|\label{}| vergeben, so dass man im Text auf diese verweisen kann. Beginnen muss dieser mit folgendem Befehl, wonach man dann die Anhänge einbinden kann:
+
+\begin{verbatim}
+    \appendix
+    \section{Material} \label{app:material}
+\end{verbatim}
+
+
+\subsection{Software für \LaTeX}
+
+Empfohlen wird \textcolor{HCU}{\href{https://de.overleaf.com/}{de.overleaf.com}} oder ein lokales Programm, was \LaTeX{} compilen kann (VSCode, TeXstudio, etc.).
+
+\textcolor{red1}{Bitte informiere dich selbst, wie es dort jeweils einzurichten ist!}
+
+
+\section{Beispiele} \label{sec:Bsp}
+
+In diesem Kapitel möchte ich auf die verschiedenen Themen in einer wissenschaftlichen Arbeit in der \glqq Geodäsie \& Geoinformatik\grqq{} eingehen:
+
+
+\subsection{Überschriften}
+
+Überschriften sind das wohl wichtigste Mittel zum inhaltlichen Aufbau einer Arbeit.
+
+\begin{verbatim}
+    \section{Überschrift}
+    \subsection{Unterüberschrift}
+    \subsubsection{Unterunterüberschrift}
+    \paragraph{Paragraph}
+\end{verbatim}
+
+Zur Übersichtlichkeit im Dokument empfiehlt es sich vor jeder Überschrift zwei leere Zeilen zu setzen (vor allem wenn man mit anderen zusammen arbeitet oder andere über sein Dokument schauen lässt).\\
+
+Bei überlangen Überschriften geht der Text über den Rand hinaus, dabei hilft dann folgender Befehl:
+
+\begin{verbatim}
+\section[Überschrift]{\texorpdfstring{Überschrift tex}{Überschrift pdf}}
+\end{verbatim}
+
+Dabei ist die Überschrift in der eckigen Klammer für das Inhaltsverzeichnis und die anderen Strings für die Formatierung und der Darstellung in der PDF verantwortlich.
+
+
+\subsection{Text-Formatierungen}
+
+Man kann Text auch \textit{kursiv}, \textbf{fett}, \textbf{\textit{fett \& kursiv}} und \underline{unterstreichen}.
+
+\begin{verbatim}
+    \textit{kursiv}
+    \textbf{fett}
+    \textbf{\textit{fett \& kursiv}}
+    \underline{unterstrichen}
+\end{verbatim}
+
+Aber auch in der Größe verändern:\\
+
+\verb|\Huge| \hfill {\Huge Huge}
+
+\verb|\huge| \hfill {\huge huge}
+
+\verb|\LARGE| \hfill {\LARGE LARGE}
+
+\verb|\Large| \hfill {\Large Large}
+
+\verb|\large| \hfill {\large large}
+
+\verb|\small| \hfill {\small small}
+
+\verb|\footnotesize| \hfill {\footnotesize footnotesize}
+
+\verb|\scriptsize| \hfill {\scriptsize scriptsize}
+
+\verb|\tiny| \hfill {\tiny tiny}\\
+
+Man setzt den Befehl entweder in geschweifte Klammern \verb|{\LARGE Text}| oder in einem Befehl:
+
+\begin{center}
+    \begin{LARGE}
+        LARGE
+    \end{LARGE}
+\end{center}
+
+
+\begin{verbatim}
+    \begin{center}
+        \begin{LARGE}
+            LARGE
+        \end{LARGE}
+    \end{center}
+\end{verbatim}
+
+
+\subsubsection{Textfarbe}
+
+Um Text in anderer Farbe darzustellen wird der Befehl \verb|\textcolor{Farbe}{Text}| verwendet. Die Farbe wird im Hauptdokument definiert.
+
+\textcolor{HCU}{Ich bin im HCU-blau.}\\
+\textcolor{red1}{Ich bin in rot.}\\
+\textcolor{mygray}{Ich bin grau.}
+
+\begin{verbatim}
+    \textcolor{HCU}{Ich bin im HCU-blau.}\\
+    \textcolor{red1}{Ich bin in rot.}\\
+    \textcolor{mygray}{Ich bin grau.}
+\end{verbatim}
+
+Oder man verwendet den neuen Befehl \verb|\HCUcolor{}|:
+
+\HCUcolor{Ich bin im HCU-blau.}
+
+
+\subsubsection{Anführungszeichen}
+
+"Das steht in normalen Anführungszeichen." Und hier ist normaler Text.
+
+\glqq Das steht in richtigen Anführungszeichen.\grqq{} Und hier ist
+normaler Text.
+
+\begin{verbatim}
+"Das steht in normalen Anführungszeichen." Und hier ist normaler Text.
+
+\glqq Das steht in richtigen Anführungszeichen.\grqq{} Und hier ist
+normaler Text.
+\end{verbatim}
+
+Somit kann man mit \verb|\glqq| Anführungszeichen unten und mit \verb|\grqq{}| (Klammern wichtig für Leerzeichen) oben machen.
+
+\subsection{Absätze} \label{sec:absatz}
+
+Option 1 wie in Kapitel \ref{sec:einfacher-absatz}:
+
+\begin{verbatim}
+    Hier ist Absatz 1.
+    % dazwischen ist eine leere Zeile (dies ist nur ein Kommentar)
+    Hier ist Absatz 2.
+\end{verbatim}
+
+Option 2 wie in Kapitel \ref{sec:deutlicher-absatz}:
+
+\begin{verbatim}
+    Hier ist Absatz 1.\\
+    % dazwischen ist eine leere Zeile (dies ist nur ein Kommentar)
+    Hier ist Absatz 2.
+\end{verbatim}
+
+Option 2 sieht besser aus.
+
+
+\subsubsection{Einfache Absatzbildung} \label{sec:einfacher-absatz}
+
+Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. % Absätze können durch eine freie Zeile entstehen oder ...
+
+Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht? Auch gibt es niemanden, der den Schmerz
+
+
+\subsubsection{Deutlichere Absatzbildung} \label{sec:deutlicher-absatz}
+
+Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können.\\ % ... man kann zwei Absätze auch optisch mehr voneinander trennen
+
+Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht? Auch gibt es niemanden, der den Schmerz
+
+
+\subsection{Referenzieren}
+
+Wie in Kapitel \ref{sec:ersteSec} zu sehen, kann man verschiedene Überschriften setzen und den Text schreiben. Nun hat man auch schon ein Label und eine Referenz gesetzt. Hier mal ein paar Beispiele für Labels:
+
+\begin{verbatim}
+    \label{sec:Überschrift}
+    \label{fig:Abbildung}
+    \label{tab:Tabelle}
+    \label{eq:Formel}
+    \label{lst:Listing}
+    \label{app:Anhang}
+\end{verbatim}
+
+Mit den Kürzeln vorweg hat man eine eindeutigere Zuordnung, sie sind aber auch keine Pflicht. Referenzieren kann man diese dann mit \verb|\ref{label}| , aber auch \verb|\autoref{label}| ist möglich, wobei letzteres nicht immer das bringt, was man möchte. \verb|\autoref{}| ist z.B. bei Abbildungen oder Tabellen im Text hilfreich, da auch die Objektart vorangestellt wird. Überschriften werden aber nicht mit einer richtigen Objektart versehen:
+
+\autoref{fig:HCU-logo}, \autoref{tab:Test}, \autoref{sec:Bsp} oder Kapitel \ref{sec:Bsp}\\
+
+Wenn man aber auf sie in Klammern verkürzt auf sie verweisen möchte, ist \verb|\ref{}| wiederum hilfreich:
+
+(Abb. \ref{fig:HCU-logo}, Tab. \ref{tab:Test}, Kap. \ref{sec:Bsp})
+
+
+\subsection{Zitate} \label{sec:Zitate}
+
+Ich zitiere gerne aus einem Fachbuch \cite[S. xx ff.]{9783879076581}. Oder direkt \citeA[S. xx ff.]{9783879076581}.
+
+\begin{verbatim}
+    \cite[S. xx ff.]{label_bsp_2023} % indirekt
+    \citeA[S. xx ff.]{label_bsp_2023} % direkt
+\end{verbatim}
+
+Aber man kann sich das auch aus den einzelnen Attributen zusammen setzten, wenn man zwei Quellen hat:
+
+\begin{verbatim}
+    (\citeauthor{9783879076581}, \citeyearNP{9783879076581}, S. xx; ...)
+\end{verbatim}
+
+(\citeauthor{9783879076581}, \citeyearNP{9783879076581}, S. xx; ...)
+
+
+\subsection{Abbildungen}
+
+Abbildungen können wie folgt implementiert werden:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{Daten/hcu_logo.pdf}
+	\caption{HCU-Logo}
+	\caption*{Quelle: } % hier kann eine Quelle mit \citeA[S. ]{} angegeben werden
+	\label{fig:HCU-logo}
+\end{figure}
+
+Zwischen Absätzen und Abbildungen o.ä. empfiehlt es sich eine freie Zeile zu lassen.
+
+\begin{verbatim}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\textwidth]{Daten/Datei}
+        \caption{Überschrift}
+        \caption*{Quelle: \citeA[S. xx]{}}
+        \label{fig:my_label}
+    \end{figure}
+\end{verbatim}
+
+Das \verb|[H]| muss noch gesetzt werden, damit die Abbildung genau dort eingefügt wird. In der eckigen Klammer des Befehls \verb|\includegraphics[Optionen]{Pfad/Dateiname}| können weitere Optionen durchgeführt werden.
+
+\subsubsection{Zwei Abbildungen}
+
+Manchmal möchte man auch zwei Abbildungen nebeneinander darstellen. Dies kann man als Subfigures machen:
+
+\begin{verbatim}
+    \begin{figure}[H]
+        \begin{subfigure}[c]{0.48\textwidth}
+            \includegraphics[width=\textwidth]{Daten/}
+            \subcaption{}
+            \label{fig:}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[c]{0.48\textwidth}
+            \includegraphics[width=\textwidth]{Daten/}
+            \subcaption{}
+            \label{fig:}
+        \end{subfigure}
+        \caption{}
+        \caption*{Quelle: \citeA[]{}}
+        \label{fig:}
+    \end{figure}
+\end{verbatim}
+
+
+\subsection{Tabellen}
+
+Tabellen können nicht so einfach wie in Word oder Excel erstellt werden. Am einfachsten ist es aber, dass man eine Excel-Datei erstellt mit allen Berechnungen und diese dann auf \href{https://www.tablesgenerator.com/latex_tables}{TableGenerator} über File ... Paste table data ... einfügt und sich dann anpasst. Anschließend kann der Code für \LaTeX{} generiert und eingefügt werden. Es können auch schon weitere Optionen zu Überschrift, Label und Layout definiert werden.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Dies & ist     & nur  \\ \hline
+		ein  & kleiner & Test \\ \hline
+		für  & \LaTeX{}   & !!!  \\ \hline
+	\end{tabular}
+	\caption{Test-Tabelle} \label{tab:Test}
+	\caption*{auch hier kann eine Quelle stehen}
+\end{table}
+
+Das \verb|[H]| muss noch gesetzt werden, damit die Tabelle genau dort eingefügt wird und das Layout besser aussieht. Die \autoref{tab:Test} sieht als Code wie folgt aus:
+
+\begin{verbatim}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Dies & ist     & nur  \\ \hline
+            ein  & kleiner & Test \\ \hline
+            für  & \LaTeX{}   & !!!  \\ \hline
+        \end{tabular}
+        \caption{Test-Tabelle} \label{tab:Test}
+        \caption*{auch hier kann eine Quelle stehen}
+    \end{table}
+\end{verbatim}
+
+
+\subsection{Formeln}
+
+Hier gibt es verschiedene Möglichkeiten. Im Text:\\
+Der Satz des Pythagoras' lautet: $c^2 = a^2 + b^2$. \\
+Einfach so, was nicht zu empfehlen ist: \\
+\[\label{eq:GaußschesFehlerintegral}
+\int_{-\infty}^{+\infty} e^{-x^2} dx = \sqrt{\pi} \cdot \frac{1}{2}
+\]
+
+Oder aber so, was sehr zu empfehlen ist:
+
+\begin{equation}
+	\numberwithin{equation}{section}
+	c^2 = a^2 + b^2 \label{eq:Pythagoras} \\
+\end{equation}
+
+\begin{verbatim}
+    \begin{equation}
+        \numberwithin{equation}{section}
+        Formel \label{eq:Formel} \\
+    \end{equation}
+\end{verbatim}
+
+Hilfreich ist auch die Seite eines \href{https://www.codecogs.com/latex/eqneditor.php}{Formeleditors}.\\
+
+Wenn man allerdings mit Matrizen (bzw. Vektoren) oder Wörtern in Formeln arbeiten möchte, empfiehlt es sich \verb|\mathbf{}| für Matrizen (bzw. Vektoren) und \verb|\text{}| bzw. \verb|\textbf{}| für Wörter zu verwenden:
+
+\begin{equation}
+	\numberwithin{equation}{section}
+	\mathbf{\hat{x}} = \mathbf{\left(A^T A\right)}^{-1} \mathbf{A^T l} \label{eq:Ausgleichung} \\
+\end{equation}
+
+\begin{equation}
+	\numberwithin{equation}{section}
+	M = \frac{\text{Kartenstrecke}}{\text{Strecke in der Natur}} = \frac{s_K}{s_N} = \frac{1}{m} \label{eq:Maßstab} \\
+\end{equation}
+
+
+\subsection{Listings (Python-Code)}
+
+Python-Code kann auf zwei verschiedene Arten in \LaTeX{} gebracht werden. Die erste Variante ist direkt in der Datei
+
+\begin{lstlisting}[language=Python, style=Python, caption=Basemap-Anwendung, label={lst:basemap}]
+	# Libraries
+	from mpl_toolkits.basemap import Basemap
+	import matplotlib.pyplot as plt
+	# Initialize the map
+	map = Basemap(llcrnrlon=-160, llcrnrlat=-60, urcrnrlon=160, urcrnrlat=70)
+	# Continent and countries!
+	map.drawmapboundary(fill_color="#A6CAE0")
+	map.fillcontinents(color="#e6b800", lake_color="#e6b800")
+	map.drawcountries(color="white")
+	plt.show()
+\end{lstlisting} 
+
+oder aber aus einer vorhandenen Datei
+
+\lstinputlisting[language=Python, style=Python, firstline=17, lastline=26, caption=TCP-Server, label={lst:tcpserver}]{Daten/03_tcp_server.py}
+
+
+\subsection{Aufzählungen}
+
+Aufzählungen kann man für das Instrumentarium verwenden:
+
+\begin{itemize}	
+	\setlength{\itemsep}{-2pt} % hier kann der Abstand gewählt werden
+	\item Trimble S7 (Seriennummer: VE72)
+	\item 2 Reflektoren mit Dreifuss und optischen Lot
+	\item 3 Stative
+\end{itemize}
+
+\begin{verbatim}
+    \begin{itemize}	
+    	\setlength{\itemsep}{-2pt} % hier kann der Abstand gewählt werden
+    	\item Trimble S7 (Seriennummer: VE72)
+    	\item 2 Reflektoren mit Dreifuss und optischen Lot
+    	\item 3 Stative
+    \end{itemize}
+\end{verbatim}
+
+Wenn man aber keinen Abstand angibt, sieht es wie folgt aus:
+
+\begin{itemize}	
+	\item Trimble S7 (Seriennummer: VE72)
+	\item 2 Reflektoren mit Dreifuss und optischen Lot
+	\item 3 Stative
+\end{itemize}
+
+Deshalb bietet sich es an diesen Abstand zu verringern. Auch zusätlicher Text unter jedem Punkt lässt sich einfügen als ob man einen Absatz machen würde (\verb|\\|):
+
+\begin{itemize}	
+	\setlength{\itemsep}{-2pt} % hier kann der Abstand gewählt werden
+	\item Trimble S7 (Seriennummer: VE72)\\
+	Hier ist noch zusätzlicher Text.
+	\item 2 Reflektoren mit Dreifuss und optischen Lot
+	\item 3 Stative
+\end{itemize}
+
+
+\subsection{Abstände}
+
+Abstände können sowohl horizontal als auch vertikal, aber auch gefüllt werden. Manchmal benötigt man diese, damit das Layout besser aussieht:
+
+Hier ist Text links \hfill aber auch rechts.
+
+\vspace{10mm}
+{\hfill Einen Zentimer darunter auf der rechten Seite.}
+
+\begin{verbatim}
+    Hier ist Text links \hfill aber auch rechts.
+
+    \vspace{10mm}
+    {\hfill Einen Zentimer darunter auf der rechten Seite.}
+\end{verbatim}
+
+Die Befehle sind somit \verb|\hfill|, \verb|\vfill|, \verb|\hspace{}| und \verb|\vspace{}|, wobei die letzten beiden auch mit einem Sternchen zwischen Befehl und Klammern schreibt, wenn man diesen erzwingen möchte.
+
+\subsection{Minipages}
+
+Manchmal ist es besser Text und Bilder nebeneinander zu setzen. Hier sind zwei\linebreak \verb|minipage| von Vorteil:\\
+
+\begin{minipage}[H]{0.48\textwidth}
+	Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen?
+\end{minipage}
+\hfill
+\begin{minipage}[H]{0.48\textwidth}
+	Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen?
+\end{minipage}\\
+
+\begin{verbatim}
+    \begin{minipage}[H]{0.48\textwidth}
+    	
+    \end{minipage}
+    \hfill
+    \begin{minipage}[H]{0.48\textwidth}
+    	
+    \end{minipage}\\
+\end{verbatim}
+
+Es lassen sich auch mehr als zwei Minipages nebeneinander platzieren. Dabei. sollten die Spaltenbreite nie 1 ergeben und zur schönen Gestaltung ist hier ein horizontaler Abstand auch sinnvoll. In Minipages kann eigentlich alles wie gehabt eingesetzt oder gestaltet werden. Es empfiehlt sich vorher und nachher einen Absatz zu machen.
+
+
+\subsection{Spalten}
+
+Spalten sind eher nicht so sinnvoll, außer man möchte keine Minipage verwenden, da hier der Inhalt gleichmäßig aufgeteilt wird:
+
+\begin{multicols}{2}
+	Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen?
+\end{multicols}
+
+\begin{verbatim}
+    \begin{multicols}{2}
+    	
+    \end{multicols}
+\end{verbatim}
+
+Auch hier lässt sich die Spaltenanzahl erhöhen:
+
+\begin{multicols}{3}
+	Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen?
+\end{multicols}
+
+
+\subsection{PDF-Seiten einbinden}
+
+Wenn man, wie für den Anhang, damit keine leere Seite entsteht, eine PDF-Seite hinzufügen möchte, verwendet man den Befehl, der in \verb|Makros.tex| eingebunden ist.\\
+
+Falls man eine PDF als Raster einfügen möchte, bspw. Präsentationsfolien, so empfiehlt sich der Befehl \verb|\includepdf[Optionen]{Dateipfad}| (s. \verb|Makros.tex|). Dort kann man die PDF-Seiten sowie das Raster definieren (\verb|nup=<Spalten>x<Zeile>|). Der Befehl \verb|pagecommand={}| lässt Kopf- und Fußzeile erhalten.
+
+
+\subsection{Umbrüche}
+
+Falls eine Seite gut formatiert ist und ein Seitenumbruch erfolgen soll kann einer der folgenden Befehle verwendet werden:
+
+\begin{verbatim}
+    \pagebreak
+    \newpage
+\end{verbatim}
+
+Soll dagegen eine Zeile umgebrochen werden empfiehlt sich 
+
+\begin{verbatim}
+    \linebreak
+\end{verbatim}
+
+
+\vfill
+\section{Schlussworte}
+
+Dies waren sehr viele Eindrücke in \LaTeX{} und ich hoffe, diese Vorlage hilft dir/euch weiter.\\
+
+Bei Fragen schreibt mir oder erstellt ein Issue auf GitHub. Vielen Dank!
+
+Schaut auch regelmäßig auf GitHub vorbei!\\
+
+Viel Spaß beim Schreiben und viel Erfolg im Studium wünscht
+
+Fabian Bloch
+
+\vspace{15mm}
+\textcolor{HCU}{P.S.: Ihr könnt bei Overleaf über \glqq Neues Projekt ... Projekt hochladen\grqq{} auch eine ZIP-Datei hochladen.}
