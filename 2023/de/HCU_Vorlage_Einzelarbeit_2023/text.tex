@@ -17,7 +17,7 @@ Diese Vorlage ist von den \LaTeX-Dateien wie folgt aufgebaut:
     \item Hauptdokument (\verb|main.tex| oder \verb|LaTeX_Vorlage_2023.tex|)\\
     Je nachdem welches Programm man benutzt wird die PDF nach dieser Datei benannt!
     \item Titelseite (\verb|titelseite.tex|)\\
-    Hier wird die Titelseite gestaltet, Da hier hauptsächlich eigene Befehle verwendet werden, muss hier kaum was selbst geändert werden.
+    Hier wird die Titelseite gestaltet. Da hier hauptsächlich eigene Befehle verwendet werden, muss hier kaum was selbst geändert werden.
     \item Text (\verb|text.tex|)\\
     Hier wird der ganze Inhalt rein geschrieben. Es ist auch empfehlenswert, dies in einer Datei und nicht pro Kapitel eine Datei zu machen, da die meiste \LaTeX-Software den Inhalt separiert anzeigt (quasi das Inhaltsverzeichnis). So kann man schneller zwischen den Überschriften hin und her springen.
     \item Quellen (\verb|Quellen.bib|)\\
@@ -173,7 +173,7 @@ So definiert man die Titelseite mit einem Befehl und löscht den Stil mit der Ko
 
 \subsubsection{Text}
 
-Der Text, also der Inhalt des Berichts, wird in die Datei \verb|text.tex| geschrieben. Wie man es macht findet man in Kapitel \ref{sec:Bsp}. Ansonsten kann man auch das hiesige Internet fragen. Ein paar kleine Vorlagen sind auch in der zusätzlichen Datei \verb|Makros.tex| zu finden, so dass es einheitlich bleibt.
+Der Text, also der Inhalt des Berichts, wird in die Datei \verb|text.tex| geschrieben. Wie man es macht findet man in Kapitel \ref{sec:Bsp}. Ansonsten kann man auch das hiesige Internet fragen. Ein paar kleine Vorlagen sind auch in der zusätzlichen Datei \verb|Makros.tex| zu finden, so dass es einheitlich bleibt. \textcolor{red1}{Diese Datei soll durch eigene Befehle im Hauptdokument ersetzt werde, so dass man eine einheitliche Umgebung besitzt.}
 
 
 \subsubsection{Quellen}
@@ -208,14 +208,14 @@ Der Anhang (\verb|anhang.tex|) dient dazu, dass man der Arbeit Dateien oder Mate
 
 \subsection{Software für \LaTeX}
 
-Empfohlen wird \textcolor{HCU}{\href{https://de.overleaf.com/}{de.overleaf.com}} oder ein lokales Programm, was \LaTeX{} compilen kann (VSCode, TeXstudio, etc.).
+Empfohlen wird \href{https://de.overleaf.com/}{de.overleaf.com} oder ein lokales Programm, was \LaTeX{} compilen kann (VSCode, TeXstudio, etc.).
 
 \textcolor{red1}{Bitte informiere dich selbst, wie es dort jeweils einzurichten ist!}
 
-
+\vfill
 \section{Beispiele} \label{sec:Bsp}
 
-In diesem Kapitel möchte ich auf die verschiedenen Themen in einer wissenschaftlichen Arbeit in der \glqq Geodäsie \& Geoinformatik\grqq{} eingehen:
+In diesem Kapitel möchte ich auf die verschiedenen Themen in einer wissenschaftlichen Arbeit in der \Quotationmarks{Geodäsie \& Geoinformatik} eingehen:
 
 
 \subsection{Überschriften}
@@ -239,7 +239,7 @@ Bei überlangen Überschriften geht der Text über den Rand hinaus, dabei hilft 
 
 Dabei ist die Überschrift in der eckigen Klammer für das Inhaltsverzeichnis und die anderen Strings für die Formatierung und der Darstellung in der PDF verantwortlich.
 
-
+\pagebreak
 \subsection{Text-Formatierungen}
 
 Man kann Text auch \textit{kursiv}, \textbf{fett}, \textbf{\textit{fett \& kursiv}} und \underline{unterstreichen}.
@@ -288,7 +288,7 @@ Man setzt den Befehl entweder in geschweifte Klammern \verb|{\LARGE Text}| oder 
     \end{center}
 \end{verbatim}
 
-
+\pagebreak
 \subsubsection{Textfarbe}
 
 Um Text in anderer Farbe darzustellen wird der Befehl \verb|\textcolor{Farbe}{Text}| verwendet. Die Farbe wird im Hauptdokument definiert.
@@ -322,9 +322,14 @@ normaler Text.
 normaler Text.
 \end{verbatim}
 
-Somit kann man mit \verb|\glqq| Anführungszeichen unten und mit \verb|\grqq{}| (Klammern wichtig für Leerzeichen) oben machen.
+Somit kann man mit \verb|\glqq| Anführungszeichen unten und mit \verb|\grqq{}| (Klammern wichtig für Leerzeichen) oben machen.\\
 
-\subsection{Absätze} \label{sec:absatz}
+Oder man verwendet den neuen Befehl \verb|\Quotationmarks{}|:
+
+\Quotationmarks{Ich bin in Anführungszeichen.}
+
+
+\subsection{Absätze}
 
 Option 1 wie in Kapitel \ref{sec:einfacher-absatz}:
 
@@ -349,14 +354,14 @@ Option 2 sieht besser aus.
 
 Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. % Absätze können durch eine freie Zeile entstehen oder ...
 
-Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht? Auch gibt es niemanden, der den Schmerz
+Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht?
 
 
 \subsubsection{Deutlichere Absatzbildung} \label{sec:deutlicher-absatz}
 
 Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können.\\ % ... man kann zwei Absätze auch optisch mehr voneinander trennen
 
-Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht? Auch gibt es niemanden, der den Schmerz
+Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht?
 
 
 \subsection{Referenzieren}
@@ -372,7 +377,7 @@ Wie in Kapitel \ref{sec:ersteSec} zu sehen, kann man verschiedene Überschriften
     \label{app:Anhang}
 \end{verbatim}
 
-Mit den Kürzeln vorweg hat man eine eindeutigere Zuordnung, sie sind aber auch keine Pflicht. Referenzieren kann man diese dann mit \verb|\ref{label}| , aber auch \verb|\autoref{label}| ist möglich, wobei letzteres nicht immer das bringt, was man möchte. \verb|\autoref{}| ist z.B. bei Abbildungen oder Tabellen im Text hilfreich, da auch die Objektart vorangestellt wird. Überschriften werden aber nicht mit einer richtigen Objektart versehen:
+Mit den Kürzeln vorweg hat man eine eindeutigere Zuordnung, sie sind aber auch keine Pflicht. Referenzieren kann man diese dann mit \verb|\ref{label}| , aber auch\linebreak \verb|\autoref{label}| ist möglich, wobei letzteres nicht immer das bringt, was man möchte. \verb|\autoref{}| ist z.B. bei Abbildungen oder Tabellen im Text hilfreich, da auch die Objektart vorangestellt wird. Überschriften werden aber nicht mit einer richtigen Objektart versehen:
 
 \autoref{fig:HCU-logo}, \autoref{tab:Test}, \autoref{sec:Bsp} oder Kapitel \ref{sec:Bsp}\\
 
@@ -457,9 +462,9 @@ Tabellen können nicht so einfach wie in Word oder Excel erstellt werden. Am ein
 	\centering
 	\begin{tabular}{|c|c|c|}
 		\hline
-		Dies & ist     & nur  \\ \hline
-		ein  & kleiner & Test \\ \hline
-		für  & \LaTeX{}   & !!!  \\ \hline
+		Dies    & ist       & nur  \\ \hline
+		ein     & kleiner   & Test \\ \hline
+		für     & \LaTeX{}  & !!!  \\ \hline
 	\end{tabular}
 	\caption{Test-Tabelle} \label{tab:Test}
 	\caption*{auch hier kann eine Quelle stehen}
@@ -511,7 +516,7 @@ Wenn man allerdings mit Matrizen (bzw. Vektoren) oder Wörtern in Formeln arbeit
 
 \begin{equation}
 	\numberwithin{equation}{section}
-	\mathbf{\hat{x}} = \mathbf{\left(A^T A\right)}^{-1} \mathbf{A^T l} \label{eq:Ausgleichung} \\
+	\mathbf{\hat{x}} = \mathbf{\left(A^T A\right)}^{-1} \mathbf{A^T \ell} \label{eq:Ausgleichung} \\
 \end{equation}
 
 \begin{equation}
@@ -597,7 +602,8 @@ Hier ist Text links \hfill aber auch rechts.
     {\hfill Einen Zentimer darunter auf der rechten Seite.}
 \end{verbatim}
 
-Die Befehle sind somit \verb|\hfill|, \verb|\vfill|, \verb|\hspace{}| und \verb|\vspace{}|, wobei die letzten beiden auch mit einem Sternchen zwischen Befehl und Klammern schreibt, wenn man diesen erzwingen möchte.
+Die Befehle sind somit \verb|\hfill|, \verb|\vfill|, \verb|\hspace{}| und \verb|\vspace{}|, wobei die letzten beiden auch mit einem Sternchen (\verb|*|) zwischen Befehl und Klammern schreibt, wenn man diesen erzwingen möchte.
+
 
 \subsection{Minipages}
 
@@ -621,7 +627,7 @@ Manchmal ist es besser Text und Bilder nebeneinander zu setzen. Hier sind zwei\l
     \end{minipage}\\
 \end{verbatim}
 
-Es lassen sich auch mehr als zwei Minipages nebeneinander platzieren. Dabei. sollten die Spaltenbreite nie 1 ergeben und zur schönen Gestaltung ist hier ein horizontaler Abstand auch sinnvoll. In Minipages kann eigentlich alles wie gehabt eingesetzt oder gestaltet werden. Es empfiehlt sich vorher und nachher einen Absatz zu machen.
+Es lassen sich auch mehr als zwei Minipages nebeneinander platzieren. Dabei. sollten die Spaltenbreite nie 1 ergeben und zur schönen Gestaltung ist hier ein horizontaler Abstand auch sinnvoll. In Minipages kann eigentlich alles wie gehabt eingesetzt oder gestaltet werden. Es empfiehlt sich vorher und nachher einen Absatz (\verb|\\|) zu machen.
 
 
 \subsection{Spalten}
@@ -681,5 +687,5 @@ Viel Spaß beim Schreiben und viel Erfolg im Studium wünscht
 
 Fabian Bloch
 
-\vspace{15mm}
+\vspace{7mm}
 \textcolor{HCU}{P.S.: Ihr könnt bei Overleaf über \glqq Neues Projekt ... Projekt hochladen\grqq{} auch eine ZIP-Datei hochladen.}

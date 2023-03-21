@@ -1,0 +1,686 @@
+\section{General} \label{sec:firstSec}
+
+Welcome to my \LaTeX{} template for geodesy students at HCU!
+
+Here I give an overview of the structure and formatting in a \LaTeX-document. The end product of one or more related \LaTeX-files is always a PDF file that even contains bookmarks.\\
+
+For the \LaTeX-code or file or folder names in the PDF, I use a code block that does not appear in the listings directory:
+
+\verb|\LaTeX-code can then be placed here.|
+
+
+\subsection{Structure of a \LaTeX-document} \label{sec:structure}
+
+This template is constructed from the \LaTeX-files as follows:
+
+\begin{itemize}
+    \item Main document (\verb|main.tex| or \verb|LaTeX_template_2023.tex|)\\
+    Depending on which program you use, the PDF will be named after this file!
+    \item Title page (\verb|titlepage.tex|)\\
+    The title page is designed here. Since mainly own commands are used here, hardly anything has to be changed here.
+    \item Text (\verb|text.tex|)\\
+    The whole content is written here. It is also advisable to do this in one file and not one file per chapter, as most \LaTeX-software displays the content separately (the table of contents, so to speak). This makes it easier to jump back and forth between the headings.
+    \item References (\verb|References.bib|)\\
+    BibTeX file that lists the sources in its own way. This is used for citing and for the bibliography.
+    \item Appendix (\verb|appendix.tex|)\\
+    Files or other material can be attached here.
+\end{itemize}
+
+You also need a \verb|Data|-folder to store all the PDFs, images, etc. that will be included in the course of the work.
+
+
+\subsubsection{Main document}
+
+The main document always starts with a definition of a class. For reports \verb|article| is a suitable choice:
+
+\begin{verbatim}
+    % \documentclass[12pt,a4paper]{article}
+    
+    % This is a comment in LaTeX
+    % At beginning there is no %-character !! 
+    % (But here LaTeX needs it for compiling)
+\end{verbatim}
+
+I have also commented on most of this in the document itself. After that, a global setting was made for indenting paragraphs. Then come numerous packages that are useful for many things.
+
+\begin{verbatim}
+    \usepackage[package options]{package name}
+\end{verbatim}
+
+On the internet you can always find numerous tips for each package. The header and footer are defined at the end of the included and defined packages.
+
+\paragraph{Font}
+
+\LaTeX{} uses the font \href{https://en.wikipedia.org/wiki/Computer_Modern}{Computer Modern} by default, which is a serif font. However, in scientific documents sans-serif fonts are more commonly used. For this reason, it is recommended to switch the font. There are many fonts available at \url{https://tug.org/FontCatalogue/} and instructions on how to include them. The fonts \href{https://tug.org/FontCatalogue/arimo/}{Arimo} and \href{https://tug.org/FontCatalogue/arev/}{Arev} are recommended.\\
+
+For special characters used in German, such as umlauts, it is necessary to use the \verb|\usepackage[T1]{fontenc}| so that it is displayed correctly both in the PDF and when copying from it.
+
+\begin{verbatim}
+    % Set font
+    % more on https://tug.org/FontCatalogue/
+    \usepackage[sfdefault]{arimo}
+    \usepackage[T1]{fontenc}
+\end{verbatim}
+
+Hereafter, the custom commands begin, where you enter your own data. To show a few examples:
+
+\begin{verbatim}
+    % Enter the information here:
+    \newcommand{\Writer}{Sur- Lastname}
+    \newcommand{\Mail}{surname.lastname}
+    \newcommand{\Register}{xxxxxxx} % insert register number
+    \newcommand{\Module}{Module long}
+\end{verbatim}
+
+A custom command is defined as follows:
+
+\begin{verbatim}
+    \newcommand{\own}{own command}
+    % thus, it becomes
+    This is an \own. % to:
+\end{verbatim}
+
+This is an \own.
+
+More information can be found at \url{https://en.overleaf.com/learn/latex/Commands}.\\
+
+Now, the actual document can be started with the following command, with more commands to follow:
+
+\begin{verbatim}
+    \begin{document}
+    
+    \end{document}
+\end{verbatim}
+
+Here, you can already see that commands must always start and end. Each command can have its own options. In the \verb|document| command, the structure of the document is now defined and built with the files described in Chapter \ref{sec:structure}:
+
+\begin{verbatim}
+    \include{titlepage}
+
+    \pagenumbering{Roman}
+    \tableofcontents
+    
+    \newpage
+    \pagenumbering{arabic}
+    \spacing{1.5}
+    \include{text}
+    % ... see at file ...
+    \include{appendix}
+\end{verbatim}
+
+Here, the title page, table of contents, and other documents are included. If they are commented out (\verb|%|), they can be \glqq deleted\grqq{} from the final product.
+
+
+\paragraph{Directories}
+
+The directories are created once and are to be used repeatedly. Firstly, the sources are included through the \verb|References.bib|, where the citation style (\verb|apacite| for APA-style) is also defined:
+
+\begin{verbatim}
+    % References
+    \nocite{*}
+    \bibliographystyle{apacite}
+    \bibliography{References} % bbl, blg files
+\end{verbatim}
+
+Afterwards, the list of figures
+
+\begin{verbatim}
+    % List of figures
+    \listoffigures
+    \addcontentsline{toc}{section}{List of Figures}
+\end{verbatim}
+
+and the table of tables, where you can also turn on or off a comment.
+
+\begin{verbatim}
+    % List of tables
+    \listoftables
+    \addcontentsline{toc}{section}{List of Tables}
+    % Display the comment if needed:
+    % \vspace{0.2cm}
+    % \noindent
+    % ... (see file)
+\end{verbatim}
+
+Finally, the code directory:
+
+\begin{verbatim}
+    % List of listings
+    \lstlistoflistings
+    \addcontentsline{toc}{section}{Listings}
+\end{verbatim}
+
+
+\subsubsection{Title Page}
+
+The \verb|titlepage.tex| file is/should be used to design the title page. However, since it mainly contains custom commands as placeholders, there is little need to make changes here. This template can also be used as a template for group assignments. In this case, it can be adapted accordingly (possibly, a separate template for group assignments will also be created).
+
+However, the following commands should be considered for a title page:
+
+\begin{verbatim}
+    \begin{titlepage}
+        \thispagestyle{empty}
+	    \pdfbookmark[1]{Title page}{Title page}
+        % ...
+    \end{titlepage}
+\end{verbatim}
+
+This command defines the title page and removes the header and footer style from this page. In addition, a PDF bookmark can be set for the title page so that the reader can directly click on it later.
+
+\textcolor{red1}{If only the title page is defined, \LaTeX{} creates its own title page!}
+
+\subsubsection{Text}
+
+The text, i.e., the content of the report, is written in the file \verb|text.tex|. How to do this is explained in chapter \ref{sec:examples}. Otherwise, one can also consult the internet. A few small templates can also be found in the additional file \verb|Makros.tex| to ensure consistency. \textcolor{red1}{This file should be replaced by custom commands in the main document to have a consistent environment.}
+
+
+\subsubsection{References}
+
+The references are saved together in a \verb|References.bib| file. This is a BibTeX file in which one can also write \LaTeX{} code. However, there are a few things to consider.
+
+\begin{verbatim}
+    @book{label_bsp_2023,
+        author = "Lastname1, Firstname1 AND Lastname2, Firstname2",
+        title = {{Example Title}},
+        publisher = "Example Publisher",
+        year = 2023
+    }
+\end{verbatim}
+
+This is an example of a book reference. There are also other types of references that have different required and optional attributes.\\
+
+There are also helper programs for this, such as Citavi or \url{https://zbib.org}, but their results must be \textcolor{red1}{\underline{absolutely}} adapted.
+
+How to cite using the packages included and defined here is explained in chapter \ref{sec:citations}.
+
+
+\subsubsection{Appendix}
+
+The appendix (\verb|appendix.tex|) is used to attach files or materials to the report. For example, assignment descriptions, Python files (and results), as well as other things. One can give each appendix a \verb|\section{}| and also assign a \verb|\label{}| so that one can refer to them in the text. This must start with the following command, after which the appendices can be included:
+
+\begin{verbatim}
+    \appendix
+    \section{Material} \label{app:material}
+\end{verbatim}
+
+
+\subsection{Software for \LaTeX}
+
+It is recommended to use \href{https://www.overleaf.com/}{www.overleaf.com} or a local program that can compile \LaTeX{} (VSCode, TeXstudio, etc.).
+
+\textcolor{red1}{Please inform yourself how to set it up in each case!}
+
+\pagebreak
+\section{Examples} \label{sec:examples}
+
+In this chapter, I would like to discuss the various topics in a scientific paper in the field of \Quotationmarks{Geodesy \& Geoinformatics}:
+
+
+\subsection{Headings}
+
+Headings are probably the most important means of structuring the content of a paper.
+
+\begin{verbatim}
+    \section{Heading}
+    \subsection{Subheading}
+    \subsubsection{Sub-subheading}
+    \paragraph{Paragraph}
+\end{verbatim}
+
+For clarity in the document, it is recommended to insert two blank lines before each heading (especially when working with others or sharing your document with others).
+
+In case of overlong headings, the text extends beyond the margin. The following command can help in such cases:
+
+\begin{verbatim}
+\section[Heading]{\texorpdfstring{Heading tex}{Heading pdf}}
+\end{verbatim}
+
+In this case, the text in the square brackets is responsible for the table of contents, while the other strings control the formatting and display in the PDF.
+
+
+\subsection{Text-formatting}
+
+Text can also be formatted as \textit{italic}, \textbf{bold}, \textbf{\textit{bold \& italic}}, and \underline{underlined}.
+
+\begin{verbatim}
+    \textit{italic}
+    \textbf{bold}
+    \textbf{\textit{bold & italic}}
+    \underline{underlined}
+\end{verbatim}
+
+But text can also be changed in size:\\
+
+\verb|\Huge| \hfill {\Huge Huge}
+
+\verb|\huge| \hfill {\huge huge}
+
+\verb|\LARGE| \hfill {\LARGE LARGE}
+
+\verb|\Large| \hfill {\Large Large}
+
+\verb|\large| \hfill {\large large}
+
+\verb|\small| \hfill {\small small}
+
+\verb|\footnotesize| \hfill {\footnotesize footnotesize}
+
+\verb|\scriptsize| \hfill {\scriptsize scriptsize}
+
+\verb|\tiny| \hfill {\tiny tiny}\\
+
+The command can be enclosed either in curly brackets \verb|{\LARGE Text}| or in a command:
+
+\begin{center}
+    \begin{LARGE}
+        LARGE
+    \end{LARGE}
+\end{center}
+
+\begin{verbatim}
+    \begin{center}
+        \begin{LARGE}
+            LARGE
+        \end{LARGE}
+    \end{center}
+\end{verbatim}
+
+
+\subsubsection{Text Color}
+
+To display text in a different color, the command \verb|\textcolor{color}{text}| is used. The color is defined in the main document.
+
+\textcolor{HCU}{I am in HCU blue.}\\
+\textcolor{red1}{I am in red.}\\
+\textcolor{mygray}{I am gray.}
+
+\begin{verbatim}
+    \textcolor{HCU}{I am in HCU blue.}\\
+    \textcolor{red1}{I am in red.}\\
+    \textcolor{mygray}{I am gray.}
+\end{verbatim}
+
+Alternatively, the new command \verb|\HCUcolor{}| can be used:
+
+\HCUcolor{I am in HCU blue.}
+
+
+\subsubsection{Quotation Marks}
+
+"This is in normal quotation marks." And here is normal text.
+
+\glqq This is in correct quotation marks.\grqq{} And here is normal text.
+
+\begin{verbatim}
+"This is in normal quotation marks." And here is normal text.
+
+\glqq This is in correct quotation marks.\grqq{} And here is normal text.
+\end{verbatim}
+
+Thus, one can use \verb|\glqq| for opening and \verb|\grqq{}| (brackets important for spacing) for closing quotation marks.\\
+
+Or one can use the new command \verb|\Quotationmarks{}|:
+
+\Quotationmarks{I am in quotation marks.}
+
+
+\subsection{Paragraphs}
+
+Option 1 as shown in section \ref{sec:simple-paragraph}:
+
+\begin{verbatim}
+    Here is paragraph 1.
+    % There is an empty line in between (this is just a comment)
+    Here is paragraph 2.
+\end{verbatim}
+
+Option 2 as shown in section \ref{sec:clear-paragraph}:
+
+\begin{verbatim}
+    Here is paragraph 1.\\
+    % There is an empty line in between (this is just a comment)
+    Here is paragraph 2.
+\end{verbatim}
+
+Option 2 looks better.
+
+
+\subsubsection{Simple paragraph formation} \label{sec:simple-paragraph}
+
+Pain is a complex and subjective experience that is difficult to define. While it is generally seen as an unpleasant sensation, it can also have positive associations, such as signaling healing or growth. However, most people try to avoid pain whenever possible, and it is often associated with negative emotions like fear, anxiety, and sadness. % Paragraphs can be formed by a blank line or ...
+
+Despite its negative associations, pain serves an important function in alerting us to potential danger or harm. It can also motivate us to take action to alleviate the pain and prevent further injury. Overall, while pain is not something we seek out, it is an integral part of the human experience.
+
+\subsubsection{Clearer paragraph formation} \label{sec:clear-paragraph}
+
+Pain is a complex and subjective experience that is difficult to define. While it is generally seen as an unpleasant sensation, it can also have positive associations, such as signaling healing or growth. However, most people try to avoid pain whenever possible, and it is often associated with negative emotions like fear, anxiety, and sadness.\\ % ... two paragraphs can also be visually separated more from each other
+
+Despite its negative associations, pain serves an important function in alerting us to potential danger or harm. It can also motivate us to take action to alleviate the pain and prevent further injury. Overall, while pain is not something we seek out, it is an integral part of the human experience.
+
+
+\subsection{Referencing}
+
+As shown in Chapter \ref{sec:firstSec}, it is possible to set different headings and write the text. Now you already have a label and a reference set. Here are a few examples of labels:
+
+\begin{verbatim}
+    \label{sec:heading}
+    \label{fig:figure}
+    \label{tab:table}
+    \label{eq:formula}
+    \label{lst:listing}
+    \label{app:appendix}
+\end{verbatim}
+
+The abbreviations at the beginning provide a clearer assignment, but they are not mandatory. These can be referenced with \verb|\ref{label}|, but \verb|\autoref{label}| is also possible, although the latter does not always provide the desired output. For example, \verb|\autoref{}| is helpful when referring to figures or tables in the text, as it also adds the type of object. However, headings are not prefixed with a correct object type:
+
+\autoref{fig:HCU-logo}, \autoref{tab:Test}, \autoref{sec:examples} or chapter \ref{sec:examples}\\
+
+If you want to refer to them in brackets, you can use \verb|\ref{}| again:
+
+(Fig. \ref{fig:HCU-logo}, Tab. \ref{tab:Test}, Chap. \ref{sec:examples})
+
+
+\subsection{Citations} \label{sec:Citations}
+
+I like to quote from a specialized book \cite[p. xx ff.]{9783879076581}. Or directly \citeA[p. xx ff.]{9783879076581}.
+
+\begin{verbatim}
+    \cite[p. xx ff.]{example_label_2023} % indirect
+    \citeA[p. xx ff.]{example_label_2023} % direct
+\end{verbatim}
+
+But if you have two sources, you can also combine the individual attributes:
+
+\begin{verbatim}
+    (\citeauthor{9783879076581}, \citeyearNP{9783879076581}, p. xx; ...)
+\end{verbatim}
+
+(\citeauthor{9783879076581}, \citeyearNP{9783879076581}, p. xx; ...)
+
+
+\subsection{Figures}
+
+Figures can be implemented as follows:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Data/hcu_logo.pdf}
+    \caption{HCU logo}
+    \caption*{Source: } % a source can be specified using \citeA[p. ]{}
+    \label{fig:HCU-logo}
+\end{figure}
+
+It is recommended to leave a blank line between paragraphs and figures.
+
+\begin{verbatim}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\textwidth]{Data/File}
+        \caption{Caption}
+        \caption*{Source: \citeA[p. xx]{}}
+        \label{fig:my_label}
+    \end{figure}
+\end{verbatim}
+
+The \verb|[H]| needs to be set to ensure that the figure is inserted exactly there. Additional options can be specified in the square brackets of the\linebreak \verb|\includegraphics[options]{path/filename}| command.
+
+
+\subsubsection{Two Figures}
+
+Sometimes it is desirable to display two figures side-by-side. This can be achieved using subfigures:
+
+\begin{verbatim}
+    \begin{figure}[H]
+        \begin{subfigure}[c]{0.48\textwidth}
+            \includegraphics[width=\textwidth]{Data/}
+            \subcaption{}
+            \label{fig:}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[c]{0.48\textwidth}
+            \includegraphics[width=\textwidth]{Data/}
+            \subcaption{}
+            \label{fig:}
+        \end{subfigure}
+        \caption{}
+        \caption*{Source: \citeA[]{}}
+        \label{fig:}
+    \end{figure}
+\end{verbatim}
+
+
+\subsection{Tables}
+
+Tables cannot be created as easily in \LaTeX{} as in Word or Excel. The easiest way is to create an Excel file with all the calculations and then paste it into \href{https://www.tablesgenerator.com/latex_tables}{TableGenerator} using File ... Paste table data ..., then adjust as needed. Afterwards, the code for \LaTeX{} can be generated and inserted. Additional options for headers, labels, and layout can also be defined.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        This    & is        & just  \\ \hline
+        a       & little    & test  \\ \hline
+        for     & \LaTeX{}  & !!!   \\ \hline
+    \end{tabular}
+    \caption{Test Table} \label{tab:Test}
+    \caption*{source can also be added here}
+\end{table}
+
+Das \verb|[H]| muss noch gesetzt werden, damit die Tabelle genau dort eingefügt wird und das Layout besser aussieht. Die \autoref{tab:Test} sieht als Code wie folgt aus:
+
+\begin{verbatim}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            This    & is        & just  \\ \hline
+            a       & little    & test  \\ \hline
+            for     & \LaTeX{}  & !!!   \\ \hline
+        \end{tabular}
+        \caption{Test Table} \label{tab:Test}
+        \caption*{source can also be added here}
+    \end{table}
+\end{verbatim}
+
+
+\subsection{Formulas}
+
+There are several options here. In the text:\\
+The Pythagorean theorem is: $c^2 = a^2 + b^2$. \\
+Just like that, which is not recommended: \\
+\[\label{eq:GaussianErrorIntegral}
+\int_{-\infty}^{+\infty} e^{-x^2} dx = \sqrt{\pi} \cdot \frac{1}{2}
+\]
+
+Or like this, which is highly recommended:
+
+\begin{equation}
+	\numberwithin{equation}{section}
+	c^2 = a^2 + b^2 \label{eq:Pythagoras} \\
+\end{equation}
+
+\begin{verbatim}
+    \begin{equation}
+        \numberwithin{equation}{section}
+        Formel \label{eq:formula} \\
+    \end{equation}
+\end{verbatim}
+
+It is also helpful to use a \href{https://www.codecogs.com/latex/eqneditor.php}{formula editor}.\\
+
+When working with matrices (or vectors) or words within formulas, it is recommended to use \verb|\mathbf{}| for matrices (or vectors) and \verb|\text{}| or \verb|\textbf{}| for words. For example:
+
+\begin{equation}
+	\numberwithin{equation}{section}
+	\mathbf{\hat{x}} = \mathbf{\left(A^T A\right)}^{-1} \mathbf{A^T \ell} \label{eq:adjustment} \\
+\end{equation}
+
+\begin{equation}
+	\numberwithin{equation}{section}
+	M = \frac{\text{map distance}}{\text{distance in nature}} = \frac{s_K}{s_N} = \frac{1}{m} \label{eq:scale} \\
+\end{equation}
+
+
+\subsection{Listings (Python Code)}
+
+Python code can be included in \LaTeX{} documents in two different ways. The first option is to directly include the code in the document as shown below:
+
+\begin{lstlisting}[language=Python, style=Python, caption=Basemap-Anwendung, label={lst:basemap}]
+	# Libraries
+	from mpl_toolkits.basemap import Basemap
+	import matplotlib.pyplot as plt
+	# Initialize the map
+	map = Basemap(llcrnrlon=-160, llcrnrlat=-60, urcrnrlon=160, urcrnrlat=70)
+	# Continent and countries!
+	map.drawmapboundary(fill_color="#A6CAE0")
+	map.fillcontinents(color="#e6b800", lake_color="#e6b800")
+	map.drawcountries(color="white")
+	plt.show()
+\end{lstlisting} 
+
+or else from an existing file
+
+\lstinputlisting[language=Python, style=Python, firstline=17, lastline=26, caption=TCP-Server, label={lst:tcpserver}]{Data/03_tcp_server.py}
+
+
+\subsection{Bullet Lists}
+
+Bullet lists can be used for the inventory:
+
+\begin{itemize}	
+	\setlength{\itemsep}{-2pt} % here the distance can be chosen
+	\item Trimble S7 (serial number: VE72)
+	\item 2 reflectors with tripod and optical plumb
+	\item 3 tripods
+\end{itemize}
+
+\begin{verbatim}
+    \begin{itemize}	
+    	\setlength{\itemsep}{-2pt} % here the distance can be chosen
+    	\item Trimble S7 (serial number: VE72)
+    	\item 2 reflectors with tripod and optical plumb
+    	\item 3 tripods
+    \end{itemize}
+\end{verbatim}
+
+However, if no distance is specified, it looks like this:
+
+\begin{itemize}	
+	\item Trimble S7 (serial number: VE72)
+	\item 2 reflectors with tripod and optical plumb
+	\item 3 tripods
+\end{itemize}
+
+Therefore, it is advisable to reduce this distance. Additional text can also be inserted under each point as if one were creating a paragraph (\verb|\\|):
+
+\begin{itemize}	
+	\setlength{\itemsep}{-2pt} % here the distance can be chosen
+	\item Trimble S7 (serial number: VE72)\\
+	Here is some additional text.
+	\item 2 reflectors with tripod and optical plumb
+	\item 3 tripods
+\end{itemize}
+
+
+\subsection{Spacing}
+
+Spacing can be adjusted both horizontally and vertically, and can also be filled. Sometimes it is necessary to adjust spacing for better layout:
+
+Text on the left \hfill but also on the right.
+
+\vspace{10mm}
+{\hfill One centimeter below on the right side.}
+
+\begin{verbatim}
+    Text on the left \hfill but also on the right.
+
+    \vspace{10mm}
+    {\hfill One centimeter below on the right side.}
+\end{verbatim}
+
+The commands are \verb|\hfill|, \verb|\vfill|, \verb|\hspace{}| and \verb|\vspace{}|, whereby the latter two can also be written with an asterisk (\verb|*|) between the command and the brackets if you want to force the spacing.
+
+\pagebreak
+\subsection{Minipages}
+
+Sometimes it's better to place text and images side by side. Here, two \verb|minipage| are useful:\\
+
+\begin{minipage}[H]{0.48\textwidth}
+	There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain, unless it is to occur in some circumstances in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it?
+\end{minipage}
+\hfill
+\begin{minipage}[H]{0.48\textwidth}
+	There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain, unless it is to occur in some circumstances in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it?
+\end{minipage}\\
+
+\begin{verbatim}
+    \begin{minipage}[H]{0.48\textwidth}
+    	
+    \end{minipage}
+    \hfill
+    \begin{minipage}[H]{0.48\textwidth}
+    	
+    \end{minipage}\\
+\end{verbatim}
+
+More than two minipages can also be placed side by side. The column width should never add up to 1, and a horizontal distance is also useful for a beautiful layout. Almost everything can be used or designed in minipages as usual. It is recommended to make a paragraph (\verb|\\|) before and after.
+
+
+\subsection{Columns}
+
+Columns are rather not that useful, unless you don't want to use a minipage, because here the content is divided evenly:
+
+\begin{multicols}{2}
+	There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain, unless it is to occur in some circumstances in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain, unless it is to occur in some circumstances in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it?
+\end{multicols}
+
+\begin{verbatim}
+    \begin{multicols}{2}
+    	
+    \end{multicols}
+\end{verbatim}
+
+Here, too, the number of columns can be increased:
+
+\begin{multicols}{3}
+	There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain, unless it is to occur in some circumstances in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain, unless it is to occur in some circumstances in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it?
+\end{multicols}
+
+
+\subsection{Embed PDF pages}
+
+If you want to add a PDF page, as for the attachment, so that there is no blank page, use the command included in \verb|Makros.tex|.\\
+
+If you want to insert a PDF as a raster, for example presentation slides, the command \verb|\includepdf[options]{filepath}| is recommended (see \verb|Makros.tex|). There you can define the PDF pages and the raster (\verb|nup=<columns>x<rows>|). The command \verb|pagecommand={}| preserves the header and footer.
+
+
+\subsection{Different breaks}
+
+If a page is well-formatted and a page break should occur, one of the following commands can be used:
+
+\begin{verbatim}
+    \pagebreak
+    \newpage
+\end{verbatim}
+
+If a line break is desired instead, the following command is recommended:
+
+\begin{verbatim}
+    \linebreak
+\end{verbatim}
+
+
+\vfill
+\section{Closing Words}
+
+These were a lot of impressions in \LaTeX{} and I hope this template will help you.\\
+
+If you have any questions, feel free to write to me or create an issue on GitHub. Thank you very much!
+
+Also, make sure to check GitHub regularly!\\
+
+Have fun writing and good luck with your studies.
+
+Fabian Bloch
+
+\vspace{7mm}
+\textcolor{HCU}{P.S.: You can also upload a ZIP file to Overleaf via \glqq New Project... Upload Project\grqq{}.}

@@ -1,0 +1,13 @@
+% \newpage
+\appendix
+\section{Appendix} \label{app:bsp-text}
+% Der Anhang dient dazu, dass man der Arbeit Dateien oder Materialien anhängt. Zum Beispiel Aufgabenstellung, Python-Dateien (und Ergebnisse), sowie andere Dinge.
+% Man kann jedem Anhang eine \section{} geben und auch \label{} vergeben, so dass man im Text auf diese verweisen kann.
+
+% Dies hat dem Vorteil, dass die Überschrift über der ersten Seite erscheint
+\begin{center} %trim= left bottom right top
+	\includegraphics[trim = 0mm 0mm 0mm 0mm,clip, page = 1, width=1\textwidth]{Data/Example_Text.pdf}\\
+\end{center}
+
+% alle weiteren Seiten werden wie folgt eingebunden:
+\includepdf[pages=2-, pagecommand={}, width=\textwidth]{Data/Example_Text.pdf}
