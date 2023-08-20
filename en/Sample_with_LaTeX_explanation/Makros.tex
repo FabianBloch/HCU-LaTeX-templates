@@ -1,0 +1,103 @@
+% Here are some templates from the text.tex:
+
+% Overlong headline
+\section[Title]{\texorpdfstring{Title tex}{Title pdf}}
+
+
+% text color
+\textcolor{HCU}{}
+\textcolor{red1}{}
+
+
+% quotation marks
+\Quotationmarks{text}
+
+
+% two references
+(\citeauthor{}, \citeyearNP{}, pp. ; \citeauthor{}, \citeyearNP{}, pp. )
+
+
+% figure with source
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{Data/file}
+	\caption{Title}
+	\caption*{Source: \citeA{}}
+	\label{fig:}
+\end{figure}
+
+
+% figure with trim
+\begin{figure}[H]
+	\centering
+	% trim = left lower right upper
+	\includegraphics[trim={95mm 17mm 110mm 15mm}, clip, width=1\textwidth]{Data/file.png}
+	\caption{Title}
+	\caption*{Source: \citeA{}}
+	\label{fig:}
+\end{figure}
+
+
+% two figures with Source
+\begin{figure}[H]
+	\begin{subfigure}[c]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{Data/}
+		\subcaption{}
+		\label{fig:}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[c]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{Data/}
+		\subcaption{}
+		\label{fig:}
+	\end{subfigure}
+	\caption{}
+	\caption*{Source: \citeA[]{}}
+	\label{fig:}
+\end{figure}
+
+
+% equation with number
+\begin{equation}
+	\numberwithin{equation}{section}
+	equation \label{eq:Label} \\
+\end{equation}
+
+
+% Python-Input from file
+\lstinputlisting[language=Python, style=Python, firstline=, lastline=, caption=Title, label={lst:Label}]{Data/file.py}
+
+
+% List
+\begin{itemize}	
+	\setlength{\itemsep}{-2pt}
+	\item 
+	\item 
+	\item 
+\end{itemize}
+
+
+% minipage
+\begin{minipage}[H]{0.48\textwidth}
+	
+\end{minipage}
+\hfill
+\begin{minipage}[H]{0.48\textwidth}
+	
+\end{minipage}
+
+
+% columns
+\begin{multicols}{2}
+	
+\end{multicols}
+
+
+% add a PDF-page
+\begin{center} %trim= left bottom right top
+	\includegraphics[trim = 0mm 0mm 0mm 0mm,clip, page = 1, width=1\textwidth]{Data/file.pdf}\\
+\end{center}
+
+
+% add PDF as grid
+\includepdf[pages={},nup= 2x5,delta=3mm 3mm,pagecommand={},width=0.5\textwidth]{Data/file.pdf}

@@ -1,0 +1,182 @@
+\documentclass[12pt,a4paper]{article}
+\setlength\parindent{0pt} % Absätze global nicht einrücken 
+
+% Packages
+\usepackage[a4paper,top=2.5cm,left=2.5cm,bottom=2.5cm,right=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{gensymb}
+\usepackage{multicol} % für Spalten
+% für Tabellen
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{array}
+% Captions
+\usepackage[labelfont=bf,justification=centering]{caption}
+\usepackage{subcaption}
+\captionsetup[subfigure]{list=true, font=normalsize, labelfont=bf, labelformat=brace, position=top}
+% Schriftart einstellen
+% mehr auf https://tug.org/FontCatalogue/
+\usepackage[sfdefault]{arimo}
+\usepackage[T1]{fontenc}
+% Deutsche Silbentrennung
+\usepackage[ngerman]{babel}
+% 1,5 Zeilenabstand
+\usepackage[onehalfspacing]{setspace} % ACHTUNG !!! Dies sind keine eineinhalb Zeilen Abstand
+% Verzeichnisse
+\usepackage{listings}
+% Bilderumgebnung für H
+\usepackage{float}
+% Bilder einfügen
+\usepackage{graphicx}
+% Referenzierungen und die Rahmen um die Links ausschalten
+\usepackage[colorlinks, linkcolor=black, citecolor=black, filecolor=black, urlcolor=black]{hyperref}
+% für Formeln damit Nummerierung richtig wird
+\usepackage{amsmath}
+\usepackage{lmodern}
+% Zitierstyle
+\usepackage{cite}
+\usepackage[apaciteclassic]{apacite}
+\usepackage{tabto}
+% PDF-Dateien einfügen
+\usepackage{pdfpages}
+% eigene Farben
+\usepackage{xcolor}
+\definecolor{amber}{RGB}{240,163,10}
+\definecolor{brown}{RGB}{130,90,44}
+\definecolor{cobalt}{RGB}{0,80,239}
+\definecolor{crimson}{RGB}{162,0,37}
+\definecolor{cyan1}{RGB}{27,161,226}
+\definecolor{magenta1}{RGB}{216,0,115}
+\definecolor{lime}{RGB}{164,196,0}
+\definecolor{indigo}{RGB}{106,0,255}
+\definecolor{green1}{RGB}{96,169,23}
+\definecolor{emerald}{RGB}{0,138,0}
+\definecolor{mauve}{RGB}{118,96,138}
+\definecolor{olive}{RGB}{109,135,100}
+\definecolor{orange}{RGB}{250,104,0}
+\definecolor{pink}{RGB}{244,114,208}
+\definecolor{red1}{RGB}{229,20,0}
+\definecolor{sienna}{RGB}{122,59,63}
+\definecolor{steel}{RGB}{100,118,135}
+\definecolor{teal}{RGB}{0,171,169}
+\definecolor{violet}{RGB}{170,0,255}
+\definecolor{yellow1}{RGB}{216,193,0}
+\definecolor{mygray}{RGB}{128,128,128}
+\definecolor{HCU}{RGB}{55,138,220} % das HCU-blau
+% Python-Code einbinden
+\usepackage{listings}
+\lstset{
+	backgroundcolor=\color{white},  % Hintergrundfarbe, \usepackage{color}
+	% oder \usepackage{xcolor} erforderlich
+	basicstyle=\footnotesize\ttfamily, % Schriftgröße und -art
+	breakatwhitespace=false, % Umbrüche nur bei Leerzeichen
+	breaklines=true, % autom. Zeilenumbrüche
+	captionpos=b, % Position der Beschriftung
+	commentstyle=\color{mygray}, % Stil von Kommentaren
+	deletekeywords={...}, % Welche Keywords sollen nicht als
+	% solche ausgegeben werden.
+	escapeinside={\%*}{*)}, % für die Darstellung von LaTeX-Code
+	extendedchars=true, % erweiterter Zeichensatz
+	frame=single, % Rahmen
+	keepspaces=true, % alle Leerzeichen darstellen
+	keywordstyle=\color{blue}, % Stil von Keywords
+	numbers=left, % Pos. d. Zeilennr. (none, left, right)
+	numbersep=5pt, % Abstand Zeilennr. zum Code
+	numberstyle=\tiny\color{mygray}, % Stil der Zeilennummern
+	numberblanklines=false, % Leerzeilen numerieren
+	rulecolor=\color{black}, %
+	showspaces=false, % Leerzeichen anzeigen
+	showstringspaces=false, % Leerz. innerhalb von Strings unterstr.
+	showtabs=false, % Tabs anzeigen
+	stepnumber=1, % Zeilennummernschritte
+	stringstyle=\color{crimson}, % Stil der Strings
+	tabsize=2, % Tabs in n Leerzeichen umwandeln
+	xleftmargin=10pt, % linker Rand
+	title=\lstname % Dateinamen anzeigen bei \lstinputlisting
+}
+\lstdefinestyle{Python}{
+	morekeywords={as, plt}
+}
+%.txt Anzeigen
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
+{fontsize=\footnotesize ,}
+%Kopfzeile / Fußzeile
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\modul}
+\chead{\Kurztitel}
+\rhead{\includegraphics[trim=0 0 0 0,clip,height=18pt]{Daten/hcu_logo.pdf}}
+\lfoot{\Verfasser}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Hier die Angaben eintragen:
+\newcommand{\Verfasser}{Vor- Nachname}
+\newcommand{\Mail}{vorname.nachname}
+\newcommand{\Matrikel}{xxxxxxx} % Matrikelnummer eintragen
+\newcommand{\Modul}{Modul lang}
+\newcommand{\Studiengang}{B.Sc. Geodäsie u. Geoinformatik} % oder M. Sc. Geodäsie und Geoinformatik,\\Geodätische Messtechnik
+\newcommand{\Art}{Vorlage Einzelarbeit}
+\newcommand{\Titel}{Muster mit \LaTeX-Erklärung}
+\newcommand{\Veranstaltung}{Veranstaltung} % oder \Modul
+\newcommand{\Semester}{SoSe 2023} % SoSe 2023 oder WiSe 2023/24
+\newcommand{\Fachsemester}{X} % das jeweilige Fachsemester
+\newcommand{\Betreuer}{Betreuer 1\\Betreuer 2\\Betreuer 3\\} % Lehrpersonen lt. ahoi
+\newcommand{\Erstgutachter}{Betreuer 1} % nur bei Thes
+\newcommand{\Zweitgutachter}{Betreuer 2} % nur bei Thesis
+\newcommand{\Abgabe}{TT.MM.2023}
+\newcommand{\modul}{Modul kurz} % für Kopfzeile
+\newcommand{\Kurztitel}{Muster - \LaTeX} % für Kopfzeile
+
+% weitere oft genutzte Begriffe (eigene neue Befehle)
+% mehr Infos auf https://de.overleaf.com/learn/latex/Commands)
+\newcommand{\eigener}{eigener Befehl}
+\newcommand{\HCUcolor}[1]{\textcolor{HCU}{#1}}
+\newcommand{\Quotationmarks}[1]{\glqq #1\grqq{}}
+
+
+\begin{document}
+
+\include{titelseite}
+
+\pagenumbering{Roman}
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\spacing{1.5} % Zeilenabstand auf eineinhalb Zeilenabstand (onehalfspacing ist was anderes !!!)
+\include{text}
+
+\pagenumbering{Roman}
+\setcounter{page}{3} % ACHTUNG, schauen wo römisch vorher aufhört !!!!
+\onehalfspacing % wieder auf onehalfspacing
+\newpage
+% Literaturverz.
+\nocite{*}
+\bibliographystyle{apacite}
+\renewcommand{\refname}{Literaturverzeichnis}
+\bibliography{Quellen} % bbl, blg Dateien
+% Abbildungsverz.
+\listoffigures
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+% Tabellenverz.
+\listoftables
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+% Bei Bedarf den Kommentar einblenden:
+% \vspace{0.2cm}
+% \noindent
+% \textbf{Hinweis:} Die in dieser Arbeit aufgeführten Tabellen wurden (teilweise) in Excel erstellt. Die Berechnungen können in der beigefügten Excel-Datei nachvollzogen werden. Rundungsfehler liegen an Excel, ggf. wird darauf hingewiesen.
+% Listingverz.
+\lstlistoflistings
+\addcontentsline{toc}{section}{Listings}
+
+\include{anhang}
+
+\end{document}

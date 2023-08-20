@@ -1,0 +1,179 @@
+\documentclass[12pt,a4paper]{article}
+\setlength\parindent{0pt} % Paragraphs globally not indent
+
+% Packages
+\usepackage[a4paper,top=2.5cm,left=2.5cm,bottom=2.5cm,right=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{gensymb}
+\usepackage{multicol} % for columns
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{array}
+% Captions
+\usepackage[labelfont=bf,justification=centering]{caption}
+\usepackage{subcaption}
+\captionsetup[subfigure]{list=true, font=normalsize, labelfont=bf, labelformat=brace, position=top}
+% Set font
+% more on https://tug.org/FontCatalogue/
+\usepackage[sfdefault]{arimo}
+\usepackage[T1]{fontenc}
+% English language
+\usepackage[english]{babel}
+% 1.5 line spacing
+\usepackage[onehalfspacing]{setspace} % ATTENTION !!! This is not one and a half line spacing
+% Listings
+\usepackage{listings}
+% Image conversion for H
+\usepackage{float}
+% insert images
+\usepackage{graphicx}
+% Turn off referencing and the frames around the links
+\usepackage[colorlinks, linkcolor=black, citecolor=black, filecolor=black, urlcolor=black]{hyperref}
+% for formulas so that numbering becomes correct
+\usepackage{amsmath}
+\usepackage{lmodern}
+% Citation style
+\usepackage{cite}
+\usepackage[apaciteclassic]{apacite}
+\usepackage{tabto}
+% insert PDF files
+\usepackage{pdfpages}
+% own colors
+\usepackage{xcolor}
+\definecolor{amber}{RGB}{240,163,10}
+\definecolor{brown}{RGB}{130,90,44}
+\definecolor{cobalt}{RGB}{0,80,239}
+\definecolor{crimson}{RGB}{162,0,37}
+\definecolor{cyan1}{RGB}{27,161,226}
+\definecolor{magenta1}{RGB}{216,0,115}
+\definecolor{lime}{RGB}{164,196,0}
+\definecolor{indigo}{RGB}{106,0,255}
+\definecolor{green1}{RGB}{96,169,23}
+\definecolor{emerald}{RGB}{0,138,0}
+\definecolor{mauve}{RGB}{118,96,138}
+\definecolor{olive}{RGB}{109,135,100}
+\definecolor{orange}{RGB}{250,104,0}
+\definecolor{pink}{RGB}{244,114,208}
+\definecolor{red1}{RGB}{229,20,0}
+\definecolor{sienna}{RGB}{122,59,63}
+\definecolor{steel}{RGB}{100,118,135}
+\definecolor{teal}{RGB}{0,171,169}
+\definecolor{violet}{RGB}{170,0,255}
+\definecolor{yellow1}{RGB}{216,193,0}
+\definecolor{mygray}{RGB}{128,128,128}
+\definecolor{HCU}{RGB}{55,138,220} % the HCU-blue
+% insert Python-Code
+\usepackage{listings}
+\lstset{
+	backgroundcolor=\color{white},  % background color, \usepackage{color}
+	% or \usepackage{xcolor} required
+	basicstyle=\footnotesize\ttfamily, % font size and art
+	breakatwhitespace=false, % Wraps only with spaces
+	breaklines=true, % autom. line breaks
+	captionpos=b, % Position der Beschriftung
+	commentstyle=\color{mygray}, % Position of the inscription
+	deletekeywords={...}, % Which keywords should not be
+	% output as such.
+	escapeinside={\%*}{*)}, % for LaTeX code rendering
+	extendedchars=true, % extended character set
+	frame=single, % Frame
+	keepspaces=true, % show all spaces
+	keywordstyle=\color{blue}, % Style of keywords
+	numbers=left, % Pos. of line nr. (none, left, right)
+	numbersep=5pt, % Spacing  line nr. to code
+	numberstyle=\tiny\color{mygray}, % Style of line numbers
+	numberblanklines=false, % Number blank lines
+	rulecolor=\color{black}, %
+	showspaces=false, % show spaces
+	showstringspaces=false, % underline spaces in strings
+	showtabs=false, % show tabs
+	stepnumber=1, % steps of line numbers
+	stringstyle=\color{crimson}, % Style of Strings
+	tabsize=2, % convert tabs in n spaces
+	xleftmargin=10pt, % left margin
+	title=\lstname % show file name in \lstinputlisting
+}
+\lstdefinestyle{Python}{
+	morekeywords={as, plt}
+}
+% show text files
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
+{fontsize=\footnotesize ,}
+% header / footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\module}
+\chead{\ShortTitle}
+\rhead{\includegraphics[trim=0 0 0 0,clip,height=18pt]{Data/hcu_logo.pdf}}
+\lfoot{\Writer}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Enter the information here:
+\newcommand{\Writer}{First and last name}
+\newcommand{\Mail}{firstname.lastname}
+\newcommand{\Register}{xxxxxxx} % insert register number
+\newcommand{\Module}{Module long}
+\newcommand{\Study}{M. Sc. Geodesy and Geoinformatics,\\Hydrography}
+\newcommand{\Type}{Template Single-work}
+\newcommand{\Title}{\LaTeX-template}
+\newcommand{\Event}{Event} % or \Module
+\newcommand{\Semester}{SuSe 2023} % SuSe 2023 or WiSe 2023/24
+\newcommand{\SubjectSemester}{X} % the respective subject semester
+\newcommand{\Lecturer}{Lecturer 1\\Lecturer 2\\Lecturer 3\\} % Lecturer acc. to ahoi
+\newcommand{\dateofsubmission}{DD$^{\text{xx}}$ Month, 2023}
+
+\newcommand{\module}{Module short} % for header
+\newcommand{\ShortTitle}{\LaTeX} % for header
+
+% other often used terms (own new commands)
+% more information on https://de.overleaf.com/learn/latex/Commands)
+\newcommand{\own}{own command}
+\newcommand{\HCUcolor}[1]{\textcolor{HCU}{#1}}
+\newcommand{\Quotationmarks}[1]{\glqq #1\grqq{}}
+
+
+\begin{document}
+
+\include{titlepage}
+
+\pagenumbering{Roman}
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\spacing{1.5} % Line spacing set to 1.5 lines (onehalfspacing is different!!!)
+\include{text}
+
+\pagenumbering{Roman}
+\setcounter{page}{3} % ATTENTION, check where Roman numerals end previously!!!!
+\onehalfspacing % again to onehalfspacing
+\newpage
+% References
+\nocite{*}
+\bibliographystyle{apacite}
+\bibliography{References} % bbl, blg files
+% List of figures
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+% List of tables
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
+% Display the comment if needed:
+% \vspace{0.2cm}
+% \noindent
+% Note: The tables listed in this work were (partially) created in Excel. The calculations can be traced in the accompanying Excel file. Rounding errors are due to Excel, and if necessary, this will be noted.
+% List of listings
+\lstlistoflistings
+\addcontentsline{toc}{section}{Listings}
+
+\include{appendix}
+
+\end{document}
