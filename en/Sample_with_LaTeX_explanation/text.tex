@@ -422,7 +422,13 @@ It is recommended to leave a blank line between paragraphs and figures.
     \end{figure}
 \end{verbatim}
 
-The \verb|[H]| needs to be set to ensure that the figure is inserted exactly there. Additional options can be specified in the square brackets of the\linebreak \verb|\includegraphics[options]{path/filename}| command.
+The \verb|[H]| needs to be set to ensure that the figure is inserted exactly there. Additional options can be specified in the square brackets of the\linebreak \verb|\includegraphics[options]{path/filename}| command.\\
+
+With a short command (see \textit{README.md} or \textit{main document}) you can insert the above image as follows:
+
+\begin{verbatim}
+    \figureWithSource{hcu_logo.pdf}{HCU-Logo}{Source}{HCU-logo}
+\end{verbatim}
 
 
 \subsubsection{Two Figures}
@@ -580,6 +586,17 @@ Therefore, it is advisable to reduce this distance. Additional text can also be 
 	\item 3 tripods
 \end{itemize}
 
+This can also be formulated as follows with a standardized command:
+
+\begin{verbatim}
+    \ownItems{
+        \item Trimble S7 (serial number: VE72)\\
+        Here is some additional text.
+        \item 2 reflectors with tripod and optical plumb
+        \item 3 tripods
+    }
+\end{verbatim}
+
 
 \subsection{Spacing}
 
@@ -667,6 +684,19 @@ If a line break is desired instead, the following command is recommended:
 \begin{verbatim}
     \linebreak
 \end{verbatim}
+
+
+\subsection{Comment}
+
+To leave comments to yourself or your co-authors while writing, you can use the following command:
+
+\begin{verbatim}
+    \ownComment{Here is a comment.}
+\end{verbatim}
+
+This command is then displayed as follows and must be commented out or deleted \textbf{\underline{before submission}}:
+
+\ownComment{Here is a comment.}
 
 
 \vfill

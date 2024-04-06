@@ -36,6 +36,7 @@
 % für Formeln damit Nummerierung richtig wird
 \usepackage{amsmath}
 \usepackage{lmodern}
+\numberwithin{equation}{section}
 % Zitierstyle
 \usepackage{cite}
 \usepackage[apaciteclassic]{apacite}
@@ -140,6 +141,20 @@
 \newcommand{\eigener}{eigener Befehl}
 \newcommand{\HCUcolor}[1]{\textcolor{HCU}{#1}}
 \newcommand{\Quotationmarks}[1]{\glqq #1\grqq{}}
+\newcommand{\figureWithSource}[5][.75]{
+                \begin{figure}[H]
+                	\centering
+                	\includegraphics[width=#1\textwidth]{Daten/#2}
+                	\caption{#3}
+                	\caption*{Quelle: #4}
+                	\label{fig:#5}
+                \end{figure}}
+\newcommand{\ownItems}[1]{
+        \begin{itemize}	
+        	\setlength{\itemsep}{-2pt}
+        	#1
+        \end{itemize}}
+\newcommand{\kommentar}[1]{\textcolor{red1}{\textit{#1}}}
 
 
 \begin{document}

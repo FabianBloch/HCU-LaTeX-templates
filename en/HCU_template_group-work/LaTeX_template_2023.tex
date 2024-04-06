@@ -35,6 +35,7 @@
 % for formulas so that numbering becomes correct
 \usepackage{amsmath}
 \usepackage{lmodern}
+\numberwithin{equation}{section}
 % Citation style
 \usepackage{cite}
 \usepackage[apaciteclassic]{apacite}
@@ -137,6 +138,20 @@
 \newcommand{\own}{own command}
 \newcommand{\HCUcolor}[1]{\textcolor{HCU}{#1}}
 \newcommand{\Quotationmarks}[1]{\glqq #1\grqq{}}
+\newcommand{\figureWithSource}[5][.75]{
+                \begin{figure}[H]
+                	\centering
+                	\includegraphics[width=#1\textwidth]{Data/#2}
+                	\caption{#3}
+                	\caption*{Source: #4}
+                	\label{fig:#5}
+                \end{figure}}
+\newcommand{\ownItems}[1]{
+        \begin{itemize}	
+        	\setlength{\itemsep}{-2pt}
+        	#1
+        \end{itemize}}
+\newcommand{\ownComment}[1]{\textcolor{red1}{\textit{#1}}}
 
 
 \begin{document}

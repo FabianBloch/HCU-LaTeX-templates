@@ -428,7 +428,13 @@ Zwischen Absätzen und Abbildungen o.ä. empfiehlt es sich eine freie Zeile zu l
     \end{figure}
 \end{verbatim}
 
-Das \verb|[H]| muss noch gesetzt werden, damit die Abbildung genau dort eingefügt wird. In der eckigen Klammer des Befehls \verb|\includegraphics[Optionen]{Pfad/Dateiname}| können weitere Optionen durchgeführt werden.
+Das \verb|[H]| muss noch gesetzt werden, damit die Abbildung genau dort eingefügt wird. In der eckigen Klammer des Befehls \verb|\includegraphics[Optionen]{Pfad/Dateiname}| können weitere Optionen durchgeführt werden.\\
+
+Mit einem kurzen Befehl (s. \textit{README.md} oder \textit{Hauptdokument}) kann man die obige Abbildung wie folgt einfügen:
+
+\begin{verbatim}
+    \figureWithSource{hcu_logo.pdf}{HCU-Logo}{Quellenangabe}{HCU-logo}
+\end{verbatim}
 
 \subsubsection{Zwei Abbildungen}
 
@@ -585,6 +591,17 @@ Deshalb bietet sich es an diesen Abstand zu verringern. Auch zusätlicher Text u
 	\item 3 Stative
 \end{itemize}
 
+Mit einem einheitlichen Befehl lässt sich das auch wie folgt formulieren:
+
+\begin{verbatim}
+    \ownItems{
+        \item Trimble S7 (Seriennummer: VE72)\\
+        Hier ist noch zusätzlicher Text.
+        \item 2 Reflektoren mit Dreifuss und optischen Lot
+        \item 3 Stative
+    }
+\end{verbatim}
+
 
 \subsection{Abstände}
 
@@ -672,6 +689,19 @@ Soll dagegen eine Zeile umgebrochen werden empfiehlt sich
 \begin{verbatim}
     \linebreak
 \end{verbatim}
+
+
+\subsection{Kommentieren}
+
+Um beim Schreiben sich selbst oder seinen Mitautoren Kommentare zu hinterlassen, kann man den folgenden Befehl verwenden:
+
+\begin{verbatim}
+    \kommentar{Hier steht noch ein Kommentar.}
+\end{verbatim}
+
+Dieser Befehl wird dann wie folgt angezeigt und muss \textbf{\underline{vor der Abgabe}} auskommentiert oder gelöscht werden:
+
+\kommentar{Hier steht noch ein Kommentar.}
 
 
 \vfill
