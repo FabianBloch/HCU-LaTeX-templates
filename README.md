@@ -1,6 +1,8 @@
 # HCU-LaTeX-templates
 
+NOW with **Declaration of Independence** especially for the use of AI.
 
+JETZT mit **Unabhängigkeitserklärung** speziell für die Verwendung von KI.
 
 | HCU | LaTeX | templates |
 | - | - | -: |
